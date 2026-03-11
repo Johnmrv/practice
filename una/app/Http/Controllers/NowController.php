@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class NowController extends Controller
 {
@@ -11,6 +13,11 @@ class NowController extends Controller
         {
             return view('loop');
         }
+
+    public function regis()
+    {
+        return view('register');
+    }
 
     public function loop(Request $request)
     {
@@ -26,9 +33,9 @@ class NowController extends Controller
         }
     }
 
-    public function registartion(Request $request){
+    public function registration(Request $request){
         $name = $request -> name;
-        $email = $request -> request;
+        $email = $request -> email;
         $password = $request -> password;
 
         $validated = $request -> validate([
@@ -38,15 +45,15 @@ class NowController extends Controller
         ],
             [
             'name.required' => 'Full name is required',
-            'name.min' => $name.'Full Name must be greater than 3 required!',
-            'name.max' => $name.'Full Name must be less than 50 required!',
+            'name.min' => 'Full Name must be at least 3 characters',
+            'name.max' => 'Full Name must be less than 50 characters',
 
-            'email.required' => 'Email is Required',
-            'email.email' => "Your email . $email . is invalid",
+            'email.required' => 'Email is required',
+            'email.email' => 'The email must be a valid email address',
 
-            'password.required' => 'Password is Missing!',
-            'password.min' => $password .  'Password must be greater than 5',
-            'password.confirmed' => $password . 'Mali yung password',
+            'password.required' => 'Password is required',
+            'password.min' => 'Password must be at least 6 characters',
+            'password.confirmed' => 'The password confirmation does not match',
             ]
         );
         return back()->with('success', 'Registration successful');

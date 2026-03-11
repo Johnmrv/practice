@@ -27,10 +27,7 @@ Route::get('/loop', [NowController::class,'looping']);
 Route::post('/loop', [NowController::class,'loop']);
 
 //Validation
-
-
-
-
-
+Route::get('/register', [NowController::class, 'regis']);
+Route::post('/register', [NowController::class, 'registration']) -> name('register.register');
 
 

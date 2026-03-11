@@ -6,14 +6,14 @@
     <title>Validation</title>
 </head>
 <body>
-    <form action="registration" method = "POST">
+    <form action="{{ route('register.register') }}" method="POST">
             @csrf
 
             @if (count ($errors)>0)
 
             <div>
                 <ul>
-                    @foreach ($errors->all as $error )
+                    @foreach ($errors->all() as $error )
                     <li >{{$error}}</li>                     
                     @endforeach
                 </ul>
@@ -61,7 +61,7 @@
             {{-- For Password --}}
             <div>
                 <label >Password</label>
-                <input type="text"
+                <input type="password"
                         placeholder = "Password"
                         name = "password"
                         class = "form-control @error('password') is-invalid @enderror"
@@ -79,13 +79,13 @@
                 <label >Confirm Password</label>
                 <input type="text"
                         placeholder = "Confirm Password"
-                        name = "password_confirm"
+                        name = "password_confirmation"
                         class = "form-control">
             </div>
 
             <br>
             
-            <button type = "submit">Submit</button>
+            <input type="submit">
 
     </form>
 </body>
