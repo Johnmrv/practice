@@ -1,0 +1,11 @@
+<?php
+
+use App\Http\Controllers\NowController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/users', [NowController::class, 'index']);
+Route::post('/registration',[NowController::class, 'registration']);
